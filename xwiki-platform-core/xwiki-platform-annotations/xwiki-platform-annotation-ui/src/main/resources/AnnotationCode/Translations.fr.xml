@@ -39,8 +39,7 @@
   <minorEdit>false</minorEdit>
   <syntaxId>plain/1.0</syntaxId>
   <hidden>true</hidden>
-  <content>annotations.menu.loading=Chargement des paramètres pour les annotations
-annotations.menu.loaderror=Erreur :
+  <content>annotations.menu.loaderror=Erreur :
 annotations.tab.info.noannotations=Aucune annotation trouvée pour cette page
 
 annotations.settings.display=Afficher les annotations

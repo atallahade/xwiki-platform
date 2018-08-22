@@ -332,7 +332,16 @@ xcontext.put('propertyCustomDisplayer', new PropertyCustomDisplayer(xcontext))
 #macro(displayPropertyEditInput $property $prefix $object)
   #set($wrappedProperty = $property.propertyClass)
   #if($wrappedProperty.isCustomDisplayed($xcontext.context))
-    $xcontext.get('propertyCustomDisplayer').display($property, $prefix, $object)
+    #if($wrappedProperty.classType == "Page")
+      #set ($pagePickerParams = {
+        'id': "${prefix}_${wrappedProperty.name}",
+        'name': "${prefix}_${wrappedProperty.name}",
+        'value': "$!object.getValue($wrappedProperty.name)"
+      })
+      #pagePicker(false $pagePickerParams)
+    #else
+      $xcontext.get('propertyCustomDisplayer').display($property, $prefix, $object)
+    #end
   #else
     $doc.displayEdit($property, $prefix, $object)
   #end

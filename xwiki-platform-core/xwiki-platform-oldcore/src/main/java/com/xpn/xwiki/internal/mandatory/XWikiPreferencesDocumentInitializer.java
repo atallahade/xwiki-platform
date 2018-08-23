@@ -174,8 +174,9 @@ public class XWikiPreferencesDocumentInitializer extends AbstractMandatoryClassI
         xclass.addBooleanField("backlinks", "Activate the backlinks", "yesno");
 
         // New fields for the XWiki 1.0 skin
-        xclass.addTextField("leftPanels", "Panels displayed on the left", 60);
-        xclass.addTextField("rightPanels", "Panels displayed on the right", 60);
+        String sql = "select obj.name from BaseObject as obj where obj.className = 'Panels.PanelClass'";
+        xclass.addPageField("leftPanels", "Panels displayed on the left", 60, true, false, sql);
+        xclass.addPageField("rightPanels", "Panels displayed on the right", 60, true, false, sql);
         xclass.addBooleanField("showLeftPanels", "Display the left panel column", "yesno");
         xclass.addBooleanField("showRightPanels", "Display the right panel column", "yesno");
         xclass.addStaticListField("leftPanelsWidth", "Width of the left panel column", "---|Small|Medium|Large");

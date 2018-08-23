@@ -851,6 +851,17 @@ public abstract class ListClass extends PropertyClass
         super.mergeProperty(currentProperty, previousProperty, newProperty, configuration, context, mergeResult);
     }
 
+    @Override
+    public BaseProperty fromValue(Object value)
+    {
+        if (value instanceof String) {
+            return this.fromString((String) value);
+        }
+        BaseProperty property = newProperty();
+        property.setValue(value);
+        return property;
+    }
+
     protected <T extends EntityReference> void mergeNotOrderedListProperty(BaseProperty<T> currentProperty,
         BaseProperty<T> previousProperty, BaseProperty<T> newProperty, MergeConfiguration configuration,
         XWikiContext context, MergeResult mergeResult)

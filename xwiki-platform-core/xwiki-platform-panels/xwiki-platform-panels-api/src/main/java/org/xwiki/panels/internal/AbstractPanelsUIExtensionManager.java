@@ -28,7 +28,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Provider;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.xwiki.component.manager.ComponentLookupException;
 import org.xwiki.component.manager.ComponentManager;
@@ -81,24 +80,20 @@ public abstract class AbstractPanelsUIExtensionManager implements UIExtensionMan
      *
      * @return a comma separated list of panel IDs
      */
-    protected abstract String getConfiguration();
+    protected abstract List<String> getConfiguration();
 
     @Override
     public List<UIExtension> get(String extensionPointId)
     {
         List<UIExtension> panels = new ArrayList<>();
 
-        String panelConfigurationString = getConfiguration();
+        List<String> panelConfiguration = getConfiguration();
 
         // Verify that there's a panel configuration property defined, and if not don't return any panel extension.
-        if (!StringUtils.isEmpty(panelConfigurationString)) {
-            // we store the document reference along with their position in the list,
-            // as we want to build a list ordered the same way than in the original panelConfigurationString
-            Map<DocumentReference, Integer> panelReferenceWithPosition = new HashMap<>();
-
-            String[] panelStringReferences = getConfiguration().split(",");
-            for (int i = 0; i < panelStringReferences.length; i++) {
-                panelReferenceWithPosition.put(resolver.resolve(panelStringReferences[i].trim()), i);
+        if (!panelConfiguration.isEmpty()) {
+            List<String> panelSerializedReferences = new ArrayList<String>();
+            for (String serializedReference : panelConfiguration) {
+                panelSerializedReferences.add(serializer.serialize(resolver.resolve(serializedReference.trim())));
             }
 
             try {

@@ -91,7 +91,7 @@ $xwiki.jsfx.use('js/xwiki/editors/dataeditors.js', true)##
                   'name': "${field.name}_${propDef.name}",
                   'value': $field.getProperty($propDef.name).value
                 })
-                <dd>#pagePicker(false $pagePickerParams)</dd>
+                <dd>#pagePicker($pagePickerParams)</dd>
               #else
                 <dd>$doc.displayEdit($propDef, "${field.name}_" , $field)</dd>
               #end

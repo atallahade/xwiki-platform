@@ -126,7 +126,7 @@
                 'name': 'homepage',
                 'value': $!{escapetool.xml($homepage)}
               })
-              #pagePicker(false $pagePickerParams)
+              #pagePicker($pagePickerParams)
             &lt;/dd&gt;
 
             ## Only show the owner change form element if the current user is the current owner or a global admin (has edit on the wiki's descriptor document).

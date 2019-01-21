@@ -32,8 +32,14 @@ define('xwiki-suggestPages', ['jquery', 'xwiki-selectize'], function($) {
 
   var getSelectizeOptions = function(select) {
     var space = select.data('suggest-space');
+    var freeText = select.attr('data-freeText');
+    if (typeof freeText !== 'string') {
+      freeText = 'discouraged';
+    }
+    freeText = freeText.toLowerCase();
     return {
-      create: true,
+      create: freeText !== 'forbidden',
+      createOnBlur: freeText === 'allowed',
       load: function(text, callback) {
         loadPages(text, space).done(function(data) {
           var pages = [];

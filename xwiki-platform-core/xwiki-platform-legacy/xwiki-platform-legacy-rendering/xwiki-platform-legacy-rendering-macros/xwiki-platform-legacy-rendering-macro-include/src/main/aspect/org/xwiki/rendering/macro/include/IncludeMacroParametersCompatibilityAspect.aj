@@ -19,7 +19,9 @@
  */
 package org.xwiki.rendering.macro.include;
 
+import org.xwiki.model.reference.DocumentReference;
 import org.xwiki.properties.annotation.PropertyDescription;
+import org.xwiki.properties.annotation.PropertyDisplayType;
 
 /**
  * Legacy code for {@link IncludeMacroParameters}.
@@ -34,6 +36,7 @@ public privileged aspect IncludeMacroParametersCompatibilityAspect
      * @deprecated since 3.4M1 use {@link #setReference(String)} instead
      */
     @PropertyDescription("the name of the document to include")
+    @PropertyDisplayType(DocumentReference.class)
     @Deprecated
     public void IncludeMacroParameters.setDocument(String document)
     {

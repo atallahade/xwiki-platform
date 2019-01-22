@@ -27,8 +27,8 @@ $xwiki.ssfx.use('uicomponents/widgets/fullScreen.css', true)##
   </div>
 #end
 #template("hierarchy.vm")
-<div class="row">
-  <div id="editMeta" class="col-xs-12 col-md-7">
+<div class="row document-header">
+  <div id="editMeta" class="document-info col-xs-12 #if($displayContentMenu)col-md-7#end">
     #template('editmeta.vm')
     ## ----------------------------------------------------------------------------
     ## Compute title to display and modify rendered content accordingly.
@@ -41,7 +41,7 @@ $xwiki.ssfx.use('uicomponents/widgets/fullScreen.css', true)##
     <div id="document-title"><h1>$titleToDisplay</h1></div>
   </div>
   #if($displayContentMenu)
-    <div class="col-xs-12 col-md-5">
+    <div class="document-menu col-xs-12 col-md-5">
       #template("menus_content.vm")
     </div>
   #end
